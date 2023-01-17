@@ -43,14 +43,32 @@ public class SecurityConfiguration {
 	@Bean
 	public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception
 	{
+//		auth.inMemoryAuthentication().withUser("john").password(this.passwordEncoder().encode("935126")).roles("NORMAL");
+//		auth.inMemoryAuthentication().withUser("roshni").password(this.passwordEncoder().encode("roshni")).roles("ADMIN");
 		AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 		authenticationManagerBuilder.userDetailsService(customUserDetails).passwordEncoder(passwordEncoder());
 		return null;
 		
 	}
+	
+//	@Bean
+//	public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
+//	    InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//	    manager.createUser(User.withUsername("john")
+//	      .password(bCryptPasswordEncoder.encode("935126"))
+//	      .roles("NORMAL")
+//	      .build());
+//	    manager.createUser(User.withUsername("roshni")
+//	      .password(bCryptPasswordEncoder.encode("roshni"))
+//	      .roles("ADMIN")
+//	      .build());
+//	    return manager;
+//	}
+	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder()
 	{
+//		return NoOpPasswordEncoder.getInstance();
 		return new BCryptPasswordEncoder(10);
 		
 	}
